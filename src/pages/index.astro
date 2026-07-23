@@ -1,15 +1,21 @@
 ---
 import '../styles/global.css';
 
+const slideVersion = '20260723-2208';
+
 const projects = [
   {
     id: 'tiendaropa',
     name: 'tiendaropa',
     type: 'Ecommerce de moda',
     summary: 'Prueba de ecommerce completo: escaparate, carrito, checkout y un panel admin pensado para gestionar productos sin tocar codigo.',
-    image: '/projects/mode-admin.png',
+    slides: [
+      '/projects/slides/tiendaropa-01.png',
+      '/projects/slides/tiendaropa-02.png',
+      '/projects/slides/tiendaropa-03.png'
+    ],
     accent: '#C54C4E',
-    url: 'https://tienda-ropa.vercel.app',
+    url: 'https://tienda-ropa-weld.vercel.app',
     stack: ['FastAPI', 'SQLite', 'JavaScript', 'Docker', 'IA local'],
     metrics: ['Frontend + backend', 'Admin real', 'Excel'],
     proof: ['Catalogo con filtros por categoria, marca, talla, color, precio y stock', 'Gestion visual de productos con subida local de imagenes', 'Dashboard con pedidos, clientes, carritos y productos']
@@ -19,7 +25,11 @@ const projects = [
     name: 'crm',
     type: 'Presupuestos comerciales',
     summary: 'Herramienta comercial para crear presupuestos, seguir oportunidades y convertir datos de clientes en decisiones rapidas.',
-    image: '/projects/crm-presupuestos.png',
+    slides: [
+      '/projects/slides/crm-01.png',
+      '/projects/slides/crm-02.png',
+      '/projects/slides/crm-03.png'
+    ],
     accent: '#286D88',
     url: 'https://crm-presupuestos.vercel.app',
     stack: ['FastAPI', 'IndexedDB', 'Chart.js', 'DeepInfra', 'Excel/PDF'],
@@ -31,7 +41,11 @@ const projects = [
     name: 'gestorUsuarios',
     type: 'Gestion interna PRL',
     summary: 'Sistema interno para ordenar usuarios, trabajadores y expedientes, con exportaciones listas para uso administrativo.',
-    image: '/projects/gestorusuarios.png',
+    slides: [
+      '/projects/slides/gestorusuarios-01.png',
+      '/projects/slides/gestorusuarios-02.png',
+      '/projects/slides/gestorusuarios-03.png'
+    ],
     accent: '#2457C5',
     url: 'https://gestorusuarios-demo-front.vercel.app',
     stack: ['Next.js', 'Django REST', 'SQLite', 'Tailwind', 'Vercel'],
@@ -205,8 +219,44 @@ const career = [
         <div class="projectRail">
           {projects.map((project, index) => (
             <article class="projectCard" id={project.id} style={`--accent:${project.accent}`} data-project-card>
-              <div class="projectVisual">
-                <img src={project.image} alt={`Captura de ${project.name}`} loading={index === 0 ? 'eager' : 'lazy'} />
+              <div class="projectVisual" data-slider>
+                <div class="projectSlides" aria-label={`Capturas de ${project.name}`}>
+                  {project.slides.map((slide, slideIndex) => (
+                    <img
+                      src={`${slide}?v=${slideVersion}`}
+                      alt={`Captura ${slideIndex + 1} de ${project.name}`}
+                      loading={index === 0 && slideIndex === 0 ? 'eager' : 'lazy'}
+                      class={slideIndex === 0 ? 'is-active' : ''}
+                    />
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  class="slideArrow slideArrowPrev"
+                  aria-label={`Ver captura anterior de ${project.name}`}
+                  data-slide-prev
+                >
+                  <span aria-hidden="true">‹</span>
+                </button>
+                <button
+                  type="button"
+                  class="slideArrow slideArrowNext"
+                  aria-label={`Ver captura siguiente de ${project.name}`}
+                  data-slide-next
+                >
+                  <span aria-hidden="true">›</span>
+                </button>
+                <div class="slideCounter" aria-label={`Cambiar captura de ${project.name}`}>
+                  {project.slides.map((_, slideIndex) => (
+                    <button
+                      type="button"
+                      class={slideIndex === 0 ? 'is-active' : ''}
+                      aria-label={`Ver captura ${slideIndex + 1} de ${project.name}`}
+                      aria-pressed={slideIndex === 0 ? 'true' : 'false'}
+                      data-slide-dot={slideIndex}
+                    ></button>
+                  ))}
+                </div>
               </div>
               <div class="projectBody">
                 <div class="projectTitle">
@@ -266,6 +316,7 @@ const career = [
     <script>
       const nodes = document.querySelectorAll<HTMLElement>('[data-target]');
       const cards = document.querySelectorAll<HTMLElement>('[data-project-card]');
+      const sliders = document.querySelectorAll<HTMLElement>('[data-slider]');
 
       nodes.forEach((node) => {
         node.addEventListener('click', () => {
@@ -281,6 +332,62 @@ const career = [
       }, { threshold: 0.18 });
 
       cards.forEach((card) => observer.observe(card));
+
+      const shouldAutoSlide = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      sliders.forEach((slider, sliderIndex) => {
+        const slides = Array.from(slider.querySelectorAll<HTMLImageElement>('.projectSlides img'));
+        const dots = Array.from(slider.querySelectorAll<HTMLButtonElement>('[data-slide-dot]'));
+        const prevButton = slider.querySelector<HTMLButtonElement>('[data-slide-prev]');
+        const nextButton = slider.querySelector<HTMLButtonElement>('[data-slide-next]');
+        if (slides.length < 2) return;
+
+        let activeSlide = 0;
+        let intervalId: number | undefined;
+
+        const showSlide = (nextSlide: number) => {
+          slides[activeSlide].classList.remove('is-active');
+          dots[activeSlide]?.classList.remove('is-active');
+          dots[activeSlide]?.setAttribute('aria-pressed', 'false');
+          activeSlide = nextSlide;
+          slides[activeSlide].classList.add('is-active');
+          dots[activeSlide]?.setAttribute('aria-pressed', 'true');
+          dots[activeSlide]?.classList.add('is-active');
+        };
+
+        const startAutoSlide = () => {
+          if (!shouldAutoSlide) return;
+          intervalId = window.setInterval(() => {
+            showSlide((activeSlide + 1) % slides.length);
+          }, 3600 + sliderIndex * 450);
+        };
+
+        const restartAutoSlide = () => {
+          if (intervalId) window.clearInterval(intervalId);
+          startAutoSlide();
+        };
+
+        prevButton?.addEventListener('click', () => {
+          showSlide((activeSlide - 1 + slides.length) % slides.length);
+          restartAutoSlide();
+        });
+
+        nextButton?.addEventListener('click', () => {
+          showSlide((activeSlide + 1) % slides.length);
+          restartAutoSlide();
+        });
+
+        dots.forEach((dot) => {
+          dot.addEventListener('click', () => {
+            const targetSlide = Number(dot.dataset.slideDot);
+            if (Number.isNaN(targetSlide) || targetSlide === activeSlide) return;
+            showSlide(targetSlide);
+            restartAutoSlide();
+          });
+        });
+
+        startAutoSlide();
+      });
     </script>
   </body>
 </html>
