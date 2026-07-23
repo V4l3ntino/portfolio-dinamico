@@ -178,6 +178,29 @@ h1 span {
   text-shadow: 0 0 28px rgba(139, 92, 255, .7);
 }
 
+.typingName {
+  display: inline-block;
+  width: 9ch;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  border-right: .08em solid var(--cyan);
+  animation:
+    typingName 4.8s steps(9, end) infinite,
+    typingCursor .8s step-end infinite;
+}
+
+@keyframes typingName {
+  0%, 8% { width: 0; }
+  36%, 58% { width: 9ch; }
+  86%, 100% { width: 0; }
+}
+
+@keyframes typingCursor {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: var(--cyan); }
+}
+
 .lead {
   max-width: 580px;
   margin: 14px 0 0;
@@ -891,6 +914,12 @@ li + li { margin-top: 6px; }
   *, *::before, *::after {
     scroll-behavior: auto !important;
     transition: none !important;
+  }
+
+  .typingName {
+    width: auto;
+    border-right: 0;
+    animation: none;
   }
 }
 
