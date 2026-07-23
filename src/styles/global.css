@@ -839,7 +839,18 @@ li + li { margin-top: 6px; }
 }
 
 .contact .eyebrow { color: var(--cyan); }
-.contact h2 { max-width: 820px; }
+.contact h2 {
+  max-width: 760px;
+  font-size: clamp(30px, 4vw, 54px);
+}
+
+.contact p:not(.eyebrow) {
+  max-width: 680px;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 18px;
+}
+
 .contact .btn { flex-shrink: 0; }
 
 @media (prefers-reduced-motion: reduce) {
