@@ -1,0 +1,286 @@
+---
+import '../styles/global.css';
+
+const projects = [
+  {
+    id: 'tiendaropa',
+    name: 'tiendaropa',
+    type: 'Ecommerce de moda',
+    summary: 'Prueba de ecommerce completo: escaparate, carrito, checkout y un panel admin pensado para gestionar productos sin tocar codigo.',
+    image: '/projects/mode-admin.png',
+    accent: '#C54C4E',
+    url: 'https://tienda-ropa.vercel.app',
+    stack: ['FastAPI', 'SQLite', 'JavaScript', 'Docker', 'IA local'],
+    metrics: ['Frontend + backend', 'Admin real', 'Excel'],
+    proof: ['Catalogo con filtros por categoria, marca, talla, color, precio y stock', 'Gestion visual de productos con subida local de imagenes', 'Dashboard con pedidos, clientes, carritos y productos']
+  },
+  {
+    id: 'crm',
+    name: 'crm',
+    type: 'Presupuestos comerciales',
+    summary: 'Herramienta comercial para crear presupuestos, seguir oportunidades y convertir datos de clientes en decisiones rapidas.',
+    image: '/projects/crm-presupuestos.png',
+    accent: '#286D88',
+    url: 'https://crm-presupuestos.vercel.app',
+    stack: ['FastAPI', 'IndexedDB', 'Chart.js', 'DeepInfra', 'Excel/PDF'],
+    metrics: ['Pipeline', 'PDF/Excel', 'IA aplicada'],
+    proof: ['Registro de clientes y catalogo de servicios plantillables', 'Presupuestos con lineas, IVA, estados, duplicado y filtros', 'Graficos comerciales, chat lateral y resumenes con IA']
+  },
+  {
+    id: 'gestorusuarios',
+    name: 'gestorUsuarios',
+    type: 'Gestion interna PRL',
+    summary: 'Sistema interno para ordenar usuarios, trabajadores y expedientes, con exportaciones listas para uso administrativo.',
+    image: '/projects/gestorusuarios.png',
+    accent: '#2457C5',
+    url: 'https://gestorusuarios-demo-front.vercel.app',
+    stack: ['Next.js', 'Django REST', 'SQLite', 'Tailwind', 'Vercel'],
+    metrics: ['Next + Django', 'Dashboard', 'DOCX/PDF'],
+    proof: ['Dashboard con expedientes, filtros, seleccion multiple y ordenacion', 'Catalogos de usuarios, operarios, puestos, lugares, agentes y causas', 'Generacion de fichas de accidente y exportacion de expedientes']
+  }
+];
+
+const services = [
+  'Interfaces modernas',
+  'Backends y APIs',
+  'Automatizacion e IA'
+];
+
+const skillGroups = [
+  {
+    title: 'Frontend',
+    items: ['Astro', 'Next.js', 'JavaScript', 'Tailwind', 'Responsive UI']
+  },
+  {
+    title: 'Backend',
+    items: ['FastAPI', 'Django REST', 'SQLite', 'Auth', 'APIs']
+  },
+  {
+    title: 'Producto',
+    items: ['Admin panels', 'PDF/Excel', 'Dashboards', 'Deploy', 'IA aplicada']
+  }
+];
+
+const career = [
+  {
+    title: 'Practicas en Hispatec',
+    place: 'Hispatec',
+    period: '2025 · 4 meses',
+    description: 'Ultima etapa en empresa, trabajando durante cuatro meses en un entorno profesional donde reforcé mi criterio técnico, la organización del código y la forma de colaborar en proyectos reales.'
+  },
+  {
+    title: 'Mi primer contrato de trabajo',
+    place: 'Makito',
+    period: '2024 · 6 meses',
+    description: 'Contrato de seis meses donde participé en aplicaciones reales, entendiendo mejor el ritmo de producto, las mejoras continuas y el valor de entregar funcionalidades útiles y mantenibles.'
+  },
+  {
+    title: 'Practicas en Makito',
+    place: 'Makito',
+    period: 'Abril 2023 - Jun 2023',
+    description: 'Primer contacto fuerte con proyectos de empresa: automatizaciones en Java y Spring Boot, herramientas internas con Python y Django, y aprendizaje practico creando APIs REST.'
+  },
+  {
+    title: 'Inicio en el Grado Superior',
+    place: 'Desarrollo de Aplicaciones Web',
+    period: '2023 - 2024',
+    description: 'Base tecnica donde empece a construir criterio como desarrollador: programacion orientada a objetos, bases de datos, SQL y primeros proyectos con Java y Spring Boot.'
+  }
+];
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Portfolio freelance con proyectos desplegados y tecnologias dominadas." />
+    <title>Portfolio freelance | Proyectos desplegados</title>
+  </head>
+  <body>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <nav class="topbar" aria-label="Principal">
+          <a class="brand" href="#top" aria-label="Inicio"><span></span> Valentino | Full-stack Portfolio</a>
+          <div>
+            <a href="#skills">Stack</a>
+            <a href="#trayectoria">Trayectoria</a>
+            <a href="#proyectos">Work</a>
+            <a href="#contacto">Contact</a>
+          </div>
+        </nav>
+
+        <div class="heroGrid" id="top">
+          <div class="heroCopy">
+            <p class="eyebrow">Freelance full-stack developer</p>
+            <h1 id="hero-title">Hi, soy <span>Valentino</span></h1>
+            <p class="lead">Desarrollo interfaces, paneles de administracion y aplicaciones web completas con demos desplegadas que se pueden abrir, probar y enseñar.</p>
+            <div class="heroActions">
+              <a class="btn primary" href="#proyectos">Ver proyectos</a>
+              <a class="btn secondary" href="#skills">Tecnologias</a>
+            </div>
+          </div>
+
+          <div class="deskScene" aria-label="Escena de portfolio web">
+            <div class="monitor">
+              <div class="monitorTop">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="codeLine wide"></div>
+              <div class="codeLine mid"></div>
+              <div class="codeLine short"></div>
+              <div class="terminal">
+                <strong>3 proyectos desplegados</strong>
+                <span>ecommerce / crm / gestorUsuarios</span>
+              </div>
+            </div>
+            <div class="speaker left"></div>
+            <div class="speaker right"></div>
+            <div class="tower">
+              <span></span>
+              <span></span>
+            </div>
+            <div class="keyboard"></div>
+            <div class="mouse"></div>
+            <div class="desk"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="services" aria-label="Servicios">
+        {services.map((service) => <span>{service}</span>)}
+      </section>
+
+      <section class="section skillsSection" id="skills">
+        <div class="sectionHead">
+          <p class="eyebrow">Stack que domino</p>
+          <h2>Tecnologias aplicadas en proyectos reales</h2>
+          <p>No es una lista decorativa: cada tecnologia aparece porque esta usada en una demo desplegada, con flujos completos y problemas de negocio resueltos.</p>
+        </div>
+        <div class="skillsGrid">
+          {skillGroups.map((group) => (
+            <article>
+              <h3>{group.title}</h3>
+              <div>
+                {group.items.map((item) => <span>{item}</span>)}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section timelineSection" id="trayectoria">
+        <div class="sectionHead">
+          <p class="eyebrow">Trayectoria</p>
+          <h2>Experiencia que sostiene los proyectos</h2>
+          <p>Un recorrido corto y directo: formacion, practicas y trabajo real en empresas donde he aprendido a construir con criterio y orientacion a producto.</p>
+        </div>
+
+        <div class="timeline">
+          {career.map((step) => (
+            <article class="timelineItem">
+              <div class="timelineDot"></div>
+              <div class="timelineContent">
+                <div class="timelineMeta">
+                  <div>
+                    <h3>{step.title}</h3>
+                    <span>{step.place}</span>
+                  </div>
+                  <time>{step.period}</time>
+                </div>
+                <p>{step.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section projectsSection" id="proyectos">
+        <div class="sectionHead">
+          <p class="eyebrow">Pruebas desplegadas</p>
+          <h2>Tres proyectos que demuestran lo que puedo construir</h2>
+          <p>Cada proyecto enseña una capacidad concreta: vender online, gestionar ventas o digitalizar procesos internos. Todos tienen demo publica y una base tecnica explicable a cliente.</p>
+        </div>
+
+        <div class="projectRail">
+          {projects.map((project, index) => (
+            <article class="projectCard" id={project.id} style={`--accent:${project.accent}`} data-project-card>
+              <div class="projectVisual">
+                <img src={project.image} alt={`Captura de ${project.name}`} loading={index === 0 ? 'eager' : 'lazy'} />
+              </div>
+              <div class="projectBody">
+                <div class="projectTitle">
+                  <span>{project.type}</span>
+                  <h3>{project.name}</h3>
+                </div>
+                <p>{project.summary}</p>
+                <div class="stack">
+                  {project.stack.map((item) => <span>{item}</span>)}
+                </div>
+                <div class="proofGrid">
+                  {project.metrics.map((item) => <strong>{item}</strong>)}
+                </div>
+                <ul>
+                  {project.proof.map((item) => <li>{item}</li>)}
+                </ul>
+                <a class="projectLink" href={project.url} target="_blank" rel="noreferrer">Abrir demo desplegada</a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="section method" id="metodo">
+        <div class="sectionHead">
+          <p class="eyebrow">Como convierto una idea en demo</p>
+          <h2>Trabajo como freelance orientado a resultado</h2>
+        </div>
+        <div class="methodGrid">
+          <article>
+            <span>Brief</span>
+            <h3>Defino el flujo clave</h3>
+            <p>Traduzco una idea difusa en pantallas, datos y acciones que el cliente puede probar.</p>
+          </article>
+          <article>
+            <span>Demo</span>
+            <h3>Construyo una version usable</h3>
+            <p>Priorizo flujos completos: crear, editar, exportar, administrar y desplegar.</p>
+          </article>
+          <article>
+            <span>Entrega</span>
+            <h3>Documento y preparo siguientes pasos</h3>
+            <p>Documento stack, endpoints, despliegue y siguientes pasos para convertir demo en producto.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="contact" id="contacto">
+        <div>
+          <p class="eyebrow">Disponible para nuevos encargos</p>
+          <h2>Puedo ayudarte a crear una demo clara, bonita y funcional para validar tu idea.</h2>
+        </div>
+        <a class="btn primary" href="mailto:hola@portfolio.local">Hablar del proyecto</a>
+      </section>
+    </main>
+
+    <script>
+      const nodes = document.querySelectorAll<HTMLElement>('[data-target]');
+      const cards = document.querySelectorAll<HTMLElement>('[data-project-card]');
+
+      nodes.forEach((node) => {
+        node.addEventListener('click', () => {
+          const target = node.dataset.target;
+          if (target) document.getElementById(target)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('is-visible');
+        });
+      }, { threshold: 0.18 });
+
+      cards.forEach((card) => observer.observe(card));
+    </script>
+  </body>
+</html>
