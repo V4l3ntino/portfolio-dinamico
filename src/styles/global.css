@@ -228,19 +228,23 @@ h1 span {
   vertical-align: bottom;
   border-right: .08em solid var(--cyan);
   animation:
-    typingName 4.8s steps(9, end) infinite,
-    typingCursor .8s step-end infinite;
+    typingName 1.45s steps(9, end) .25s forwards,
+    typingCursor .8s step-end 3,
+    hideTypingCursor .01s linear 2.45s forwards;
 }
 
 @keyframes typingName {
-  0%, 8% { width: 0; }
-  36%, 58% { width: 9ch; }
-  86%, 100% { width: 0; }
+  from { width: 0; }
+  to { width: 9ch; }
 }
 
 @keyframes typingCursor {
   0%, 100% { border-color: transparent; }
   50% { border-color: var(--cyan); }
+}
+
+@keyframes hideTypingCursor {
+  to { border-color: transparent; }
 }
 
 .lead {
